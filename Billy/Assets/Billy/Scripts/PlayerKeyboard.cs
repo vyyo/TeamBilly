@@ -58,7 +58,6 @@ public class PlayerKeyboard : MonoBehaviour
 
         if(heldTime <= 0f)
         {
-            Debug.Log("PORCODIOOOOOOOOOOOO");
             Attack();
         }
     }
@@ -139,6 +138,7 @@ public class PlayerKeyboard : MonoBehaviour
         {
             Debug.Log("Attack confirmed!" + currentStance + " " + currentPose + "!");
             inputText.text = "Attack confirmed!" + currentStance + " " + currentPose + "!";
+            heldTime = attackConfirmationTimer;
             battleManager.DmgCalc(currentStance, currentPose);
         }
         else
@@ -146,7 +146,5 @@ public class PlayerKeyboard : MonoBehaviour
             Debug.Log("Attack deleted!");
             inputText.text = "Attack deleted!";
         }
-        heldTime = attackConfirmationTimer;
-        this.enabled = false;
     }
 }

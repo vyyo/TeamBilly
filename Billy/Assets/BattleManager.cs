@@ -1,39 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
     //Player Controller
     [SerializeField] PlayerKeyboard playerKeyboard;
 
+    //Text
+    [SerializeField] TextMeshProUGUI gameStateText;
+
     //Stances/Poses arrays
     string[] stances = new string[]{"Null", "Defensive", "Neutral", "Offensive"}; //will be replaced by scriptable object
     string[] poses = new string[]{"Null", "Spock", "Peace", "Marcello", "Gun", "Ok"}; //will be replaced by scriptable object
 
     //Player and Boss input
-    string playerStance = "";
-    string oldplayerStance = "";
-    string playerPose = "";
-    string oldPlayerPose = "";
-    string bossStance = "";
-    string oldBossStance= "";
-    string bossPose = "";
-    string oldbossPose = "";
+    public string playerStance = "";
+    public string oldplayerStance = "";
+    public string playerPose = "";
+    public string oldPlayerPose = "";
+    public string bossStance = "";
+    public string oldBossStance= "";
+    public string bossPose = "";
+    public string oldbossPose = "";
 
     //Health
-    [SerializeField] int playerHealth = 30;
-    [SerializeField] int bossHealth = 30;
-    [SerializeField] int baseDMG = 2;
+    [SerializeField] public int playerHealth = 30;
+    [SerializeField] public int bossHealth = 30;
+    [SerializeField] public int baseDMG = 2;
     int healStreak = 0;
 
     //Turns
-    int currentTurn = 0;
+    public int currentTurn = 0;
     [SerializeField] int turnLimit = 10; //number of turns after which the player starts taking damage
+    public bool moveSent = true;
 
     void Awake()
     {
-        ClearInputs();
+        TurnUpdate();
     }
 
     // Update is called once per frame
@@ -46,35 +51,54 @@ public class BattleManager : MonoBehaviour
     void ClearInputs()
     {
         oldplayerStance = playerStance;
-        oldbossPose = playerPose;
+        oldPlayerPose = playerPose;
         oldBossStance = bossStance;
         oldbossPose = bossPose;
 
-        playerStance = "";
-        playerPose = "";
-        bossStance = "";
-        bossPose = "";
+        playerStance = stances[0];
+        playerPose = poses[0];
+        bossStance = stances[0];
+        bossPose = poses[0];
     }
 
     void TurnUpdate()
     {
-        currentTurn = currentTurn ++;
         if(currentTurn > turnLimit)
         {
             playerHealth = playerHealth - (currentTurn - turnLimit);
         }
+        currentTurn++;
         ClearInputs();
         Debug.Log("Player health: " + playerHealth);
         Debug.Log("Boss health: " + bossHealth);
+        UIUpdate();
+        InitiateTurn();
+    }
+
+    void UIUpdate()
+    {
+        gameStateText.text = "Boss HP: " + bossHealth + " Your HP: " + playerHealth + " Turn: " + currentTurn;
+        if(bossHealth <= 0)
+        {
+            gameStateText.text = "YOU WON!";
+        }
+        else if(playerHealth <= 0)
+        {
+            gameStateText.text = "YOU LOST!";
+        }
     }
 
     void InitiateTurn()
     {
+        Debug.Log("turno nuovooooooooooooooo");
         playerKeyboard.enabled = true;
+        moveSent = false;
     }
 
     public void DmgCalc(string currentStance, string currentPose)
     {
+        playerKeyboard.enabled = false;
+
         bool win = false;
 
         //receiving player input
@@ -114,28 +138,32 @@ public class BattleManager : MonoBehaviour
 
         //damage multiplier(stances)
         int currentDMG = baseDMG;
-        if(playerStance == stances[1] && bossStance == stances[1])
-        {
-            Heal();
-        }
-        else if(playerStance == stances[1])
+        
+        
+        if(playerStance == stances[1])
         {
             currentDMG = currentDMG/2;
-            DamageAssignment();
         }
         else if(playerStance == stances[3])
         {
             currentDMG = currentDMG*2;
-            DamageAssignment();
         }
-        else if(bossStance == stances[1])
+
+        if(bossStance == stances[1])
         {
             currentDMG = currentDMG/2;
-            DamageAssignment();
         }
         else if(bossStance == stances[3])
         {
             currentDMG = currentDMG*2;
+        }
+
+        if(playerStance == stances[1] && bossStance == stances[1])
+        {
+            Heal();
+        }
+        else
+        {
             DamageAssignment();
         }
 
@@ -158,6 +186,7 @@ public class BattleManager : MonoBehaviour
         //Idk I find it to be a pretty cool thing
         void Heal()
         {
+            currentDMG = 0;
             healStreak ++;
             if(win)
             {
