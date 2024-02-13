@@ -1,0 +1,174 @@
+{
+    "name": "KeyboardControls",
+    "maps": [
+        {
+            "name": "Keyboard",
+            "id": "d2cebbe9-8545-4915-8114-237f6728b955",
+            "actions": [
+                {
+                    "name": "StanceDef",
+                    "type": "Button",
+                    "id": "5e20eff7-272c-4daa-abfc-60e327c8aa1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StanceNeut",
+                    "type": "Button",
+                    "id": "0d99959d-aa2d-4f52-87b6-00b26d50a64f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StanceAtk",
+                    "type": "Button",
+                    "id": "44d48c00-2ff0-412e-8564-089e001131e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PoseSpock",
+                    "type": "Button",
+                    "id": "cda06d27-d2cc-4a04-a928-19bfa7215e31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PosePace",
+                    "type": "Button",
+                    "id": "6b6e691f-8664-4766-91d6-06f2689fe98f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PoseMarcello",
+                    "type": "Button",
+                    "id": "9dd6ffdb-447a-491a-a99e-ac4f3fac384b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PosePistola",
+                    "type": "Button",
+                    "id": "f15675f7-5553-4cb6-a43e-62b5652638c1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PoseOk",
+                    "type": "Button",
+                    "id": "a7caf934-74ae-4562-84d7-e1f4ccfc1eab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5e9238e8-e569-44f8-b651-264badabb769",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StanceDef",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd3c8eca-1e66-420a-97c4-7194464a864b",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StanceNeut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b5794b3-90df-4cfc-bb2f-5d7a1d128b78",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StanceAtk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f8135f7-e013-43cd-a3a5-46583db80859",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PoseSpock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e59747b-7c4a-4f5f-abdc-78ec2f7587d8",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PosePace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74ce7726-5cd4-41c3-9b82-3be45c0d5830",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PoseMarcello",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29198c39-4588-45e4-bb70-2feb4d2726fb",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PosePistola",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "984e7415-b4a5-4e7b-b797-2c135485f257",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PoseOk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
