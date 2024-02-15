@@ -6,13 +6,19 @@ using TMPro;
 
 public class PoseDetector : MonoBehaviour
 {
-    public List<ActiveStateSelector> poses;
+    public List<ActiveStateSelector> symbols;
+    public List<ActiveStateSelector> stances;
     public TextMeshProUGUI text;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(var item in poses)
+        foreach(var item in symbols)
+        {
+            item.WhenSelected += () => SetTextToPoseName(item.gameObject.name);
+            item.WhenUnselected += () => SetTextToPoseName("");
+        }
+        foreach(var item in stances)
         {
             item.WhenSelected += () => SetTextToPoseName(item.gameObject.name);
             item.WhenUnselected += () => SetTextToPoseName("");
