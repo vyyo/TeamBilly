@@ -5,6 +5,13 @@ using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
+    //Animators
+    [Header("Animators(Body, Pose, Stance)")]
+    [SerializeField] private Animator[] animators;
+    public string  anBody;
+    public string  anPose;
+    public string anStance;
+
     //Player Controller
     [SerializeField] PlayerKeyboard playerKeyboard;
 
@@ -35,9 +42,12 @@ public class BattleManager : MonoBehaviour
     public int currentTurn = 0;
     [SerializeField] int turnLimit = 10; //number of turns after which the player starts taking damage
     public bool moveSent = true;
+    bool firstMove = false;
+    [SerializeField] private float intervalloTurni = 3f;
 
     void Awake()
     {
+        firstMove = true;
         TurnUpdate();
     }
 
@@ -72,6 +82,21 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Player health: " + playerHealth);
         Debug.Log("Boss health: " + bossHealth);
         UIUpdate();
+        if(firstMove)
+        {
+            InitiateTurn();
+            firstMove = false;
+        }
+        else
+        {
+            StartCoroutine(Wait(intervalloTurni));
+        }
+        //InitiateTurn();
+    }
+
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
         InitiateTurn();
     }
 
@@ -97,6 +122,10 @@ public class BattleManager : MonoBehaviour
 
     public void DmgCalc(string currentStance, string currentPose)
     {
+        animators[0].Play(anBody);
+        animators[1].Play(anPose);
+        animators[2].Play(anStance);
+
         playerKeyboard.enabled = false;
 
         bool win = false;

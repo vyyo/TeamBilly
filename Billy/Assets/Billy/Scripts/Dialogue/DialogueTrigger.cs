@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Ink.Runtime;
 
 public class DialogueTrigger : MonoBehaviour
 {

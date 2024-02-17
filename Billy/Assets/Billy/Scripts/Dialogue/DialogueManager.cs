@@ -35,11 +35,12 @@ public class DialogueManager : MonoBehaviour
     private DialogueAudioInfoSO currentAudioInfo;
     private Dictionary<string, DialogueAudioInfoSO> audioInfoDictionary;
     private AudioSource audioSource;
+    private AudioSource clipsAudioSource;
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; } //dialogueIsPlaying can be read by other scripts, but not modified
 
-    //private bool canContinueToNextLine = false;
+    //private bool canContinueToNextLine;
 
     private Coroutine displayLineCoroutine;
 
@@ -70,6 +71,7 @@ public class DialogueManager : MonoBehaviour
         inkExternalFunctions = new InkExternalFunctions();
 
         audioSource = this.gameObject.AddComponent<AudioSource>();
+        clipsAudioSource = this.gameObject.AddComponent<AudioSource>();
         currentAudioInfo = defaultAudioInfo;
     }
 
@@ -191,27 +193,31 @@ public class DialogueManager : MonoBehaviour
         //currentCutscenes = cutscenes;
 
         //dialogueVariables.StartListening(currentStory);
-        inkExternalFunctions.Bind(currentStory, animators, audioSource, audioClips/*, currentCutscenes*/);
+        inkExternalFunctions.Bind(currentStory, animators, clipsAudioSource, audioClips/*, currentCutscenes*/);
 
         //reset portrait, layout, and speaker
-        nameText.text = "NONAME";
+        //nameText.text = "NONAME";
         //portraitAnimator.Play("default");
         //layoutAnimator.Play("left");
 
+        //canContinueToNextLine = true;
+
         //continue() code
-        if(currentStory.canContinue)
+        while(currentStory.canContinue /*&& canContinueToNextLine*/)
         {
-            //set text for the current dialogue line
-            //dialogueText.text = currentStory.Continue(); this one makes everything appear all at once
-            if(displayLineCoroutine != null)
-            {
-                StopCoroutine(displayLineCoroutine); //prevents coroutine overlap
-            }
-            string nextLine = currentStory.Continue();
-            //handle tags
-            HandleTags(currentStory.currentTags);
-            displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
+            Debug.Log("bububu" + currentStory.canContinue);
+                //set text for the current dialogue line
+                //dialogueText.text = currentStory.Continue(); this one makes everything appear all at once
+                if(displayLineCoroutine != null)
+                {
+                    StopCoroutine(displayLineCoroutine); //prevents coroutine overlap
+                }
+                string nextLine = currentStory.Continue();
+                //handle tags
+                HandleTags(currentStory.currentTags);
+                displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
         }
+
         /*else
         {
             StartCoroutine(ExitDialogueMode());
@@ -257,6 +263,10 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
+
+        /*yield return new WaitForSeconds(5f);
+        Debug.Log("gagugo");
+        canContinueToNextLine = true;*/
 
         //display choices, if any, for this dialogue line
         //DisplayChoices();

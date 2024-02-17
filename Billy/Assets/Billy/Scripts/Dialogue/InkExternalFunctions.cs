@@ -15,7 +15,8 @@ public class InkExternalFunctions
 
     public void Unbind(Story story) 
     {
-        story.UnbindExternalFunction("playAnimation");
+        //story.UnbindExternalFunction("playAnimation");
+        //story.UnbindExternalFunction("playAudioClip");
     }
 
     public void PlayAnimation(int animatorIndex, string animationName, Animator[] animators)

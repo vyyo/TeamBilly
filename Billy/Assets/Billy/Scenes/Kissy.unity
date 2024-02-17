@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSpeed: 0.04
-  loadGlobalsJSON: {fileID: 0}
+  loadGlobalsJSON: {fileID: 4900000, guid: 9172ded312a4dc44da7c24d5438a6b93, type: 3}
   dialogueText: {fileID: 583914975}
   nameText: {fileID: 319292108}
   defaultAudioInfo: {fileID: 11400000, guid: cb318a8947a2ea34ba2c99d7e774bd37, type: 2}
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 057623f89bdfb7b4cbead638eaeae8c7, type: 3}
   - {fileID: 8300000, guid: e7265e97c68ee224da3a692b050cec3d, type: 3}
   inkJSON:
-  - {fileID: 0}
+  - {fileID: 4900000, guid: a597d4dec05b39b47b97bd15d34efe1d, type: 3}
 --- !u!1 &1475605421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1867,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401035061243df04bb1d12c0a0a8387e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animators:
+  - {fileID: 1475605424}
+  - {fileID: 1830022031}
+  - {fileID: 158015130}
+  anBody: 
+  anPose: 
+  anStance: 
   playerKeyboard: {fileID: 1168980095}
   gameStateText: {fileID: 654257405}
   playerStance: 

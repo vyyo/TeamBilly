@@ -41,7 +41,7 @@ KeyboardControls keyboardControls;
         {
             heldTime -= Time.deltaTime;
             Debug.Log("Updating timer");
-            inputText.text = currentStance + " " + currentPose + "attack confirmed in " + heldTime + "seconds!";
+            inputText.text = currentStance + " " + currentPose + "attack confirmed in " + heldTime.ToString("F2") + "seconds!";
         }
         else
         {
