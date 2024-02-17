@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class BossBase : MonoBehaviour
+public class Kissy : MonoBehaviour
 {
     [SerializeField] BattleManager battleManager; //only difference between vr and keyboard
+
 
     //Text
     [SerializeField] TextMeshProUGUI bossText;

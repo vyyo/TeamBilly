@@ -5,7 +5,7 @@ using TMPro;
 
 public class VRBossBase : MonoBehaviour
 {
-    [SerializeField] VRBattleManager vrBattleManager;
+    [SerializeField] VRBattleManager vrBattleManager; //only difference between vr and keyboard
 
     //Text
     [SerializeField] TextMeshProUGUI bossText;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class BossBase : MonoBehaviour
+public class VRKissy : MonoBehaviour
 {
-    [SerializeField] BattleManager battleManager; //only difference between vr and keyboard
+    [SerializeField] VRBattleManager vrBattleManager; //only difference between vr and keyboard
 
     //Text
     [SerializeField] TextMeshProUGUI bossText;
@@ -34,7 +34,7 @@ public class BossBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(battleManager.moveSent == false)
+        if(vrBattleManager.moveSent == false)
         {
             BossTurn();
         }
@@ -46,18 +46,18 @@ public class BossBase : MonoBehaviour
         BossLogic();
         BossOutput();
         //Stop calc
-        battleManager.moveSent = true;
+        vrBattleManager.moveSent = true;
     }
 
     void DataUpdate()
     {
-        oldplayerStance =  battleManager.oldplayerStance;
-        oldPlayerPose = battleManager.oldPlayerPose;
-        oldBossStance = battleManager.oldBossStance;
-        oldbossPose = battleManager.oldbossPose;
-        bossHealth = battleManager.bossHealth;
-        playerHealth = battleManager.playerHealth;
-        currentTurn = battleManager.currentTurn;
+        oldplayerStance =  vrBattleManager.oldplayerStance;
+        oldPlayerPose = vrBattleManager.oldPlayerPose;
+        oldBossStance = vrBattleManager.oldBossStance;
+        oldbossPose = vrBattleManager.oldbossPose;
+        bossHealth = vrBattleManager.bossHealth;
+        playerHealth = vrBattleManager.playerHealth;
+        currentTurn = vrBattleManager.currentTurn;
     }
 
     void BossLogic()
@@ -72,7 +72,7 @@ public class BossBase : MonoBehaviour
         bossText.text = "Non hai possibilità contro la mia" + bossStance + " " + bossPose + "!";
 
         //output
-        battleManager.bossStance = bossStance;
-        battleManager.bossPose = bossPose;
+        vrBattleManager.bossStance = bossStance;
+        vrBattleManager.bossPose = bossPose;
     }
 }

@@ -15,10 +15,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextAsset loadGlobalsJSON;
 
     [Header("Dialogue UI")]
-    [SerializeField] private GameObject dialoguePanel;
+    //[SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private Animator portraitAnimator;
+    //[SerializeField] private Animator portraitAnimator;
     //private Animator layoutAnimator;
 
     /*[Header("Choices UI")]
@@ -46,7 +46,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager dialogueManagerInstance;
 
     private const string SPEAKER_TAG = "speaker";
-    private const string PORTRAIT_TAG = "portrait";
+    //private const string PORTRAIT_TAG = "portrait";
     //private const string LAYOUT_TAG = "layout";
     private const string AUDIO_TAG = "audio";
 
@@ -185,8 +185,8 @@ public class DialogueManager : MonoBehaviour
 
         //enterdialogue() code
         currentStory = new Story(inkJSON.text);
-        dialogueIsPlaying = true;
-        dialoguePanel.SetActive(true);
+        //dialogueIsPlaying = true;
+        //dialoguePanel.SetActive(true);
 
         //currentCutscenes = cutscenes;
 
@@ -195,7 +195,7 @@ public class DialogueManager : MonoBehaviour
 
         //reset portrait, layout, and speaker
         nameText.text = "NONAME";
-        portraitAnimator.Play("default");
+        //portraitAnimator.Play("default");
         //layoutAnimator.Play("left");
 
         //continue() code
@@ -353,9 +353,9 @@ public class DialogueManager : MonoBehaviour
                 case SPEAKER_TAG:
                     nameText.text = tagValue;
                     break;
-                case PORTRAIT_TAG:
+                /*case PORTRAIT_TAG:
                     portraitAnimator.Play(tagValue);
-                    break;
+                    break;*/
                 /*case LAYOUT_TAG:
                     layoutAnimator.Play(tagValue);
                     break;*/
