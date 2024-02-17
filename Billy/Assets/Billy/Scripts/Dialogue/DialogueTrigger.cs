@@ -6,16 +6,17 @@ using UnityEngine.Playables;
 public class DialogueTrigger : MonoBehaviour
 {
 
-    [Header("Emote Animator")]
-    [SerializeField] private Animator emoteAnimator;
+    [Header("Animators(Body, Pose, Stance)")]
+    [SerializeField] private Animator[] animators;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip[] audioClips;
 
     /*[Header("Cutscenes")]
     [SerializeField] private PlayableDirector[] cutscenes;*/
 
     [Header("Ink JSON")]
     [SerializeField] private TextAsset[] inkJSON;
-
-    private bool playerInRange;
 
     private void Awake() 
     {
@@ -27,6 +28,6 @@ public class DialogueTrigger : MonoBehaviour
 
     public void PlayDialogue(int dialogueIndex)
     {
-        DialogueManager.GetInstance().PlayStory(inkJSON[dialogueIndex], emoteAnimator);
+        DialogueManager.GetInstance().PlayStory(inkJSON[dialogueIndex], animators, audioClips);
     }
 }

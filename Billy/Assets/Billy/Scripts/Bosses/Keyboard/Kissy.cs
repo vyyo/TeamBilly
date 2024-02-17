@@ -9,7 +9,8 @@ public class Kissy : MonoBehaviour
 
 
     //Text
-    [SerializeField] TextMeshProUGUI bossText;
+    //[SerializeField] TextMeshProUGUI bossText;
+    [SerializeField] DialogueTrigger dialogueTrigger;
 
     //Boss output
     string bossStance = "";
@@ -70,7 +71,8 @@ public class Kissy : MonoBehaviour
     void BossOutput()
     {
         //hint
-        bossText.text = "Non hai possibilità contro la mia" + bossStance + " " + bossPose + "!";
+        dialogueTrigger.PlayDialogue(1);
+        // = "Non hai possibilità contro la mia" + bossStance + " " + bossPose + "!"
 
         //output
         battleManager.bossStance = bossStance;

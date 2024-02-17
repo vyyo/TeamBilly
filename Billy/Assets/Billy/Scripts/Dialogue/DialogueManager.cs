@@ -175,7 +175,7 @@ public class DialogueManager : MonoBehaviour
         SetCurrentAudioInfo(defaultAudioInfo.id);
     }*/
 
-    public void PlayStory(TextAsset inkJSON, Animator emoteAnimator/*, PlayableDirector[] cutscenes*/)
+    public void PlayStory(TextAsset inkJSON, Animator[] animators, AudioClip[] audioClips/*, PlayableDirector[] cutscenes*/)
     {
         //reset
         inkExternalFunctions.Unbind(currentStory);
@@ -191,7 +191,7 @@ public class DialogueManager : MonoBehaviour
         //currentCutscenes = cutscenes;
 
         //dialogueVariables.StartListening(currentStory);
-        inkExternalFunctions.Bind(currentStory, emoteAnimator/*, currentCutscenes*/);
+        inkExternalFunctions.Bind(currentStory, animators, audioSource, audioClips/*, currentCutscenes*/);
 
         //reset portrait, layout, and speaker
         nameText.text = "NONAME";

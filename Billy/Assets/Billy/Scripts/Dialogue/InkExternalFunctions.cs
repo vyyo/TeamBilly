@@ -6,26 +6,40 @@ using UnityEngine.Playables;
 
 public class InkExternalFunctions
 {
-    public void Bind(Story story, Animator emoteAnimator/*, PlayableDirector[] currentCutscenes*/)
+    public void Bind(Story story, Animator[] animators, AudioSource audioSource, AudioClip[] audioClips/*, PlayableDirector[] currentCutscenes*/)
     {
-        story.BindExternalFunction("playEmote", (string emoteName) => PlayEmote(emoteName, emoteAnimator));
+        story.BindExternalFunction("playAnimation", (int animatorIndex, string animationName) => PlayAnimation(animatorIndex, animationName, animators));
+        story.BindExternalFunction("playAudioClip", (int clipIndex) => PlayAudioClip(clipIndex, audioSource, audioClips));
         //story.BindExternalFunction("playCutscene", (int cutsceneIndex) => PlayCutscene(cutsceneIndex, currentCutscenes));
     }
 
     public void Unbind(Story story) 
     {
-        story.UnbindExternalFunction("playEmote");
+        story.UnbindExternalFunction("playAnimation");
     }
 
-    public void PlayEmote(string emoteName, Animator emoteAnimator)
+    public void PlayAnimation(int animatorIndex, string animationName, Animator[] animators)
     {
-        if (emoteAnimator != null) 
+        if (animators[animatorIndex] != null) 
         {
-            emoteAnimator.Play(emoteName);
+            animators[animatorIndex].Play(animationName);
         }
         else 
         {
-            Debug.LogWarning("Tried to play emote, but emote animator was "
+            Debug.LogWarning("Tried to play animation, but animation animator was "
+                + "not initialized when entering dialogue mode.");
+        }
+    }
+
+    public void PlayAudioClip(int clipIndex, AudioSource audioSource, AudioClip[] audioClips)
+    {
+        if (audioClips[clipIndex] != null) 
+        {
+            audioSource.PlayOneShot(audioClips[clipIndex]);
+        }
+        else 
+        {
+            Debug.LogWarning("Tried to play audioClip, but audioClip was "
                 + "not initialized when entering dialogue mode.");
         }
     }
