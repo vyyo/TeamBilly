@@ -53,7 +53,7 @@ public class BattleManager : MonoBehaviour
     public bool invisible = false;
     public bool ongoingCombo = false;
     int comboCounter = 0;
-    [SerializeField] int invisibleCounter = 0;
+    [SerializeField] public int invisibleCounter = 0;
     [SerializeField] private float intervalloTurni = 3f;
 
     //Scene Management

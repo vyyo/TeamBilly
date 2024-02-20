@@ -1823,6 +1823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347852601}
+  - component: {fileID: 1347852605}
   - component: {fileID: 1347852604}
   - component: {fileID: 1347852603}
   m_Layer: 0
@@ -1866,27 +1867,23 @@ MonoBehaviour:
   - {fileID: 1830022031}
   - {fileID: 158015130}
   audioClips:
-  - {fileID: 8300000, guid: 1d64404ffdf9ac64b838ed7e9e395b47, type: 3}
-  - {fileID: 8300000, guid: 90e9e314b847005409cd841799f59567, type: 3}
-  - {fileID: 8300000, guid: 4637359d3ea452144aba93f3f008b2bf, type: 3}
-  - {fileID: 8300000, guid: 179e6e8fe640b1842a0305ce119e4226, type: 3}
-  - {fileID: 8300000, guid: e2fa004cefff35046b6b79cc3263d0fa, type: 3}
-  - {fileID: 8300000, guid: 884c0c0b28be8d54c90b7147fc833aec, type: 3}
-  - {fileID: 8300000, guid: 575823163cf974f4bb34118be6e8aa3c, type: 3}
-  - {fileID: 8300000, guid: 7fac9c345c64bfb4383256ce0483d673, type: 3}
-  - {fileID: 8300000, guid: e9804e8cf7a3141469e1516094d295d8, type: 3}
-  - {fileID: 8300000, guid: ed06b4ffad9a4324aae171953f4331b8, type: 3}
+  - {fileID: 8300000, guid: cc36d951eef5ee249841158d242fdfa4, type: 3}
+  - {fileID: 8300000, guid: 594d314ca62ed5548b6b484f471dde1d, type: 3}
+  - {fileID: 8300000, guid: 7a4d4f6b8e317ad49988d446668dde42, type: 3}
+  - {fileID: 8300000, guid: 3139c89373bbf1549b783ed811f62731, type: 3}
+  - {fileID: 8300000, guid: c24e8270648c99f49b2e53c3a948eb97, type: 3}
+  - {fileID: 8300000, guid: 564a318e110af4e42a7b74d9d223267b, type: 3}
+  - {fileID: 8300000, guid: 4d0a32c3a3611154fbe6fad004bd2890, type: 3}
   inkJSON:
-  - {fileID: 4900000, guid: 075eb0deeac6cf349b483ff24cd0aaee, type: 3}
-  - {fileID: 4900000, guid: 1fcf81d44552535478978084ce58ea03, type: 3}
-  - {fileID: 4900000, guid: 181095ac8c97b3c48984f2da2dce50fd, type: 3}
-  - {fileID: 4900000, guid: 42fb1514359cc5549bdd6755da7a854c, type: 3}
-  - {fileID: 4900000, guid: 00a1d1641a51aa14691589fe9a2757e0, type: 3}
-  - {fileID: 4900000, guid: 971d9010d8107054b86c5fb6147cd7a2, type: 3}
-  - {fileID: 4900000, guid: 8f6b0b90f0e43994994255a867dc35fc, type: 3}
-  - {fileID: 4900000, guid: de0c2d2604ac9184a8c5c3ea986c061d, type: 3}
-  - {fileID: 4900000, guid: 697c43d4706dd9c468022a2030d9548c, type: 3}
-  - {fileID: 4900000, guid: dccc296afd86eb944b68bfbfab156e6a, type: 3}
+  - {fileID: 4900000, guid: 829e273c799b2744994154d85be270a7, type: 3}
+  - {fileID: 4900000, guid: 811245e499ecb364f8907db67be36bed, type: 3}
+  - {fileID: 4900000, guid: e82ad729ac189df49b6b6f0bbc93eb3f, type: 3}
+  - {fileID: 4900000, guid: 4d8aabeddcae4b3448b9c188d924d86d, type: 3}
+  - {fileID: 4900000, guid: 71b36c273e66c6e48bc9ba89638e24e1, type: 3}
+  - {fileID: 4900000, guid: 7940d1e5bed75374bb229da0d9256f01, type: 3}
+  - {fileID: 4900000, guid: 85eb036928c11894ca56f8c0d3f8cf30, type: 3}
+  - {fileID: 4900000, guid: a0827ec4137ee7b438e2be2ba8a16cc8, type: 3}
+  - {fileID: 4900000, guid: d4f32c4b935e0bf4ea3b951ada897336, type: 3}
 --- !u!114 &1347852604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1906,6 +1903,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4451d1b3bed00f24bb9a104364883346, type: 3}
   - {fileID: 8300000, guid: 00425e1e5f42a5241a6369a20ed334d1, type: 3}
   phaseSwitchHP: 27
+  poseCombo: []
+  anPoseCombo: []
+--- !u!114 &1347852605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347852600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8f9c5e9d8ba5b4fb9556ec6655480a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleManager: {fileID: 1692741737}
+  dialogueTrigger: {fileID: 1347852603}
+  musicSource: {fileID: 1037629941}
+  songs:
+  - {fileID: 8300000, guid: 9878174656e5dac40add43d8e7b22d4a, type: 3}
+  - {fileID: 8300000, guid: 21dee632d9fe711428d193766277fcfd, type: 3}
+  phaseSwitchHP: 26
+  finaleHP: 8
   poseCombo: []
   anPoseCombo: []
 --- !u!1 &1362771212
@@ -2453,8 +2472,8 @@ MonoBehaviour:
   oldbossPose: 
   poseCombo: []
   anPoseCombo: []
-  playerHealth: 30
-  bossHealth: 50
+  playerHealth: 42
+  bossHealth: 56
   baseDMG: 2
   currentTurn: 0
   turnLimit: 10
