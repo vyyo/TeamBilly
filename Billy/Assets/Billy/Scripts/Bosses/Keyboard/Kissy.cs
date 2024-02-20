@@ -12,6 +12,14 @@ public class Kissy : MonoBehaviour
     //[SerializeField] TextMeshProUGUI bossText;
     [SerializeField] DialogueTrigger dialogueTrigger;
 
+    //Boss Music
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioClip[] songs;
+
+    //Battle Variables
+    [SerializeField] int phaseSwitchHP;
+    int currentPhase = 1;
+
     //Boss output
     string bossStance = "";
     string bossPose = "";
@@ -24,6 +32,8 @@ public class Kissy : MonoBehaviour
     string anStance = "";
     string anPose = "";
     string anBody = "";
+
+    int inkIndex;
 
     //Data
     string oldplayerStance = "";
@@ -39,7 +49,9 @@ public class Kissy : MonoBehaviour
 
     void Start()
     {
-        
+        musicSource.loop = true;
+        musicSource.clip = songs[0];
+        musicSource.Play();
     }
 
     // Update is called once per frame
@@ -73,13 +85,55 @@ public class Kissy : MonoBehaviour
 
     void BossLogic()
     {
-        stanceIndex = Random.Range(0,stances.Length);
-        poseIndex = Random.Range(0,poses.Length);
+        if(battleManager.firstMove)
+        {
+            inkIndex = 0;
+            battleManager.firstMove = false;
+            return;
+        }
+        if(bossHealth <= 0)
+        {
+            inkIndex = 0;
+            //audio vittoria?
+            return;
+        }
+        if(bossHealth <= phaseSwitchHP)
+        {
+            currentPhase = 2;
+            battleManager.bossHealth = bossHealth + 18;
+            battleManager.phaseSwitch = true;
+            return;
+        }
+        if(battleManager.phaseSwitch)
+        {
+            inkIndex = 0;
+            battleManager.phaseSwitch = false;
+            return;
+        }
+        
+        stanceIndex = 1;
+        poseIndex = Random.Range(1, 4);
         anStance = anStances[stanceIndex];
         anPose = anPoses[poseIndex];
-        anBody = anBodies[stanceIndex];
+        anBody = anBodies[1];
         bossStance = stances[stanceIndex];
         bossPose = poses[poseIndex];
+
+        switch(poseIndex)
+        {
+            case 1:
+            inkIndex = 1;
+            break;
+            case 2:
+            inkIndex = 2;
+            break;
+            case 3:
+            inkIndex = 3;
+            break;
+            default:
+            inkIndex = 0;
+            break;
+        }
     }
 
     void BossOutput()

@@ -92,6 +92,7 @@ public class Fantocci : MonoBehaviour
             //audio vittoria?
             return;
         }
+        
         stanceIndex = 1;
         poseIndex = Random.Range(1, 4);
         anStance = anStances[stanceIndex];

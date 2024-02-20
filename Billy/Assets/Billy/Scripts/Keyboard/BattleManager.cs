@@ -44,6 +44,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] int turnLimit = 10; //number of turns after which the player starts taking damage
     public bool moveSent = true;
     public bool firstMove = false;
+    public bool phaseSwitch = false;
     [SerializeField] private float intervalloTurni = 3f;
 
     //Scene Management
@@ -120,7 +121,7 @@ public class BattleManager : MonoBehaviour
     void InitiateTurn()
     {
         Debug.Log("turno nuovooooooooooooooo");
-        if(firstMove)
+        if(firstMove || phaseSwitch)
         {
             playerKeyboard.enabled = false;
             moveSent = false;
