@@ -1929,7 +1929,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2073,7 +2073,7 @@ Transform:
   m_GameObject: {fileID: 1043599067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.346203, y: 0.4900248, z: 18.182981}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2401,7 +2401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347852601}
-  - component: {fileID: 1347852602}
+  - component: {fileID: 1347852604}
   - component: {fileID: 1347852603}
   m_Layer: 0
   m_Name: Paul
@@ -2427,24 +2427,6 @@ Transform:
   - {fileID: 32651405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1347852602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347852600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8b6e69aa62c7a42b75a82bdbc3122d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleManager: {fileID: 1692741737}
-  dialogueTrigger: {fileID: 1347852603}
-  musicSource: {fileID: 1037629941}
-  songs:
-  - {fileID: 8300000, guid: ff8921561e70b634bbcc2e3dfa9bd1a2, type: 3}
-  phaseSwitchHP: 10
 --- !u!114 &1347852603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,23 +2443,32 @@ MonoBehaviour:
   - {fileID: 32651406}
   - {fileID: 2047874437}
   - {fileID: 1809837165}
-  audioClips:
-  - {fileID: 8300000, guid: d6c091a8d7dd28143a87596eba00b9b7, type: 3}
-  - {fileID: 8300000, guid: cd2b72410fd42384ca7504890e878c4c, type: 3}
-  - {fileID: 8300000, guid: 1d6f38894b9d3cf439f61484d7984715, type: 3}
-  - {fileID: 8300000, guid: b201505d5d8bfe246912ab9dde5f77b6, type: 3}
-  - {fileID: 8300000, guid: e7265e97c68ee224da3a692b050cec3d, type: 3}
+  audioClips: []
   inkJSON:
-  - {fileID: 4900000, guid: be189bad88d2d9043b09dbd7e250e44c, type: 3}
-  - {fileID: 4900000, guid: a597d4dec05b39b47b97bd15d34efe1d, type: 3}
-  - {fileID: 4900000, guid: bc8232fcf9c6d4c459311974d3d99916, type: 3}
-  - {fileID: 4900000, guid: 829da3b1d12811d42a9e000a5a8b5a4f, type: 3}
-  - {fileID: 4900000, guid: b2cfd6225c1c9dd4fb928c33f56bfe92, type: 3}
-  - {fileID: 4900000, guid: 35232a32f9ffa754b87d855ae746e73b, type: 3}
-  - {fileID: 4900000, guid: d38a4fd3df999e344a13b43c8e75370d, type: 3}
-  - {fileID: 4900000, guid: b80fcb1caed11f04b908fa825c7e3931, type: 3}
-  - {fileID: 4900000, guid: 3d03f44fb6ceef04db67b62618095742, type: 3}
-  - {fileID: 4900000, guid: 0d956822a0c263a45b92e0aa5d8bf09d, type: 3}
+  - {fileID: 4900000, guid: 83921ff76eb1e7b418b5c7f423294812, type: 3}
+  - {fileID: 4900000, guid: c3cda24857ce4244d9535669104c90a7, type: 3}
+  - {fileID: 4900000, guid: e0528d1cb1ab5f24bada4d90cc735112, type: 3}
+  - {fileID: 4900000, guid: 627f8f8a943125145aaa2af57157778c, type: 3}
+  - {fileID: 4900000, guid: 2736b04670397164b837331e03d18f1b, type: 3}
+  - {fileID: 4900000, guid: 25fbc77c2870f4b4b83c5fb1dbeb37bc, type: 3}
+  - {fileID: 4900000, guid: f3004b9e25df6724390ffa00ecf58152, type: 3}
+--- !u!114 &1347852604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347852600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b910b201eead45a597d26d521dae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleManager: {fileID: 1692741737}
+  dialogueTrigger: {fileID: 1347852603}
+  musicSource: {fileID: 1037629941}
+  songs:
+  - {fileID: 8300000, guid: ac8a35c49df6178429d89ea02b6a5c25, type: 3}
 --- !u!1 &1509203683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,7 +2725,7 @@ MonoBehaviour:
   moveSent: 1
   firstMove: 0
   phaseSwitch: 0
-  invisible: 0
+  invisible: 1
   invisibleCounter: 0
   intervalloTurni: 3
   nextSceneIndex: 0
@@ -3137,7 +3128,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2047874435
@@ -3276,7 +3267,7 @@ Transform:
   m_GameObject: {fileID: 2061151801}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10444397, y: 2.047921, z: -1.9131944}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

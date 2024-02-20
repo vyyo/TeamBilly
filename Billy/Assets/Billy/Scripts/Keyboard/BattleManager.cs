@@ -153,14 +153,7 @@ public class BattleManager : MonoBehaviour
 
     public void DmgCalc(string currentStance, string currentPose)
     {
-        if(invisible)
-        {
-            animators[0].Play("BodyHidden");
-        }
-        else
-        {
-            animators[0].Play(anBody);
-        }
+        animators[0].Play(anBody);
         animators[1].Play(anPose);
         animators[2].Play(anStance);
 
