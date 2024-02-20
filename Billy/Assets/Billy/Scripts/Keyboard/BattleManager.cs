@@ -35,6 +35,8 @@ public class BattleManager : MonoBehaviour
     public string oldBossStance= "";
     public string bossPose = "";
     public string oldbossPose = "";
+    public List<string> poseCombo = new List<string>();
+    public List<string> anPoseCombo = new List<string>();
 
     //Health
     [SerializeField] public int playerHealth = 30;
@@ -49,6 +51,8 @@ public class BattleManager : MonoBehaviour
     public bool firstMove = false;
     public bool phaseSwitch = false;
     public bool invisible = false;
+    public bool ongoingCombo = false;
+    int comboCounter = 0;
     [SerializeField] int invisibleCounter = 0;
     [SerializeField] private float intervalloTurni = 3f;
 
@@ -83,6 +87,14 @@ public class BattleManager : MonoBehaviour
 
     void TurnUpdate()
     {
+        if(ongoingCombo)
+        {
+            Debug.Log("Player health: " + playerHealth);
+            Debug.Log("Boss health: " + bossHealth);
+            UIUpdate();
+            StartCoroutine(Wait(intervalloTurni));
+            return;
+        }
         if(currentTurn > turnLimit)
         {
             playerHealth = playerHealth - (currentTurn - turnLimit);
@@ -132,6 +144,12 @@ public class BattleManager : MonoBehaviour
             moveSent = false;
             StartCoroutine(Wait(intervalloTurni * 3));
         }
+        else if(ongoingCombo)
+        {
+            playerKeyboard.enabled = false;
+            DmgCalc(playerStance, playerPose);
+            //StartCoroutine(Wait(intervalloTurni * 2));
+        }
         else if(bossHealth <= 0)
         {
             moveSent = false;
@@ -143,6 +161,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("WTF");
             playerKeyboard.enabled = true;
             moveSent = false;
         }
@@ -156,90 +175,123 @@ public class BattleManager : MonoBehaviour
 
     public void DmgCalc(string currentStance, string currentPose)
     {
+        
         animators[0].Play(anBody);
-        animators[1].Play(anPose);
+        //animators[1].Play(anPose);
         animators[2].Play(anStance);
 
         playerKeyboard.enabled = false;
 
         bool win = false;
+        int currentDMG;
 
         //receiving player input
         playerStance = currentStance;
         playerPose = currentPose;
 
-        //calculates the winner
-        if(playerPose == bossPose)
+        if(ongoingCombo && comboCounter < poseCombo.Count)
         {
-            TurnUpdate();
+            Debug.Log("combo");
+            animators[1].Play(anPoseCombo[comboCounter]);
+            bossPose = poseCombo[comboCounter];
+            comboCounter ++;
+            Calc();
+        }
+        else if(ongoingCombo && comboCounter >= poseCombo.Count)
+        {
+            Debug.Log("SAAAAAAAAAAAAAAAAAAS");
+            poseCombo.Clear();
+            anPoseCombo.Clear();
+            comboCounter = 0;
+            ongoingCombo = false;
+            moveSent = false;
+            ClearInputs();
+            InitiateTurn();
             return;
         }
-        else if(playerPose == poses[1] && (bossPose == poses[2] || bossPose == poses[4]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[2] && (bossPose == poses[3] || bossPose == poses[5]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[3] && (bossPose == poses[1] || bossPose == poses[4]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[4] && (bossPose == poses[2] || bossPose == poses[5]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[5] && (bossPose == poses[1] || bossPose == poses[3]))
-        {
-            win = true;
-        }
         else
         {
-            win = false;
+            animators[1].Play(anPose);
+            Calc();
         }
 
-        //damage multiplier(stances)
-        int currentDMG = baseDMG;
-        
-        
-        if(playerStance == stances[1])
+        void Calc()
         {
-            currentDMG = currentDMG/2;
-        }
-        else if(playerStance == stances[3])
-        {
-            currentDMG = currentDMG*2;
-        }
-
-        if(bossStance == stances[1])
-        {
-            currentDMG = currentDMG/2;
-        }
-        else if(bossStance == stances[3])
-        {
-            currentDMG = currentDMG*2;
-        }
-
-        if(playerStance == stances[1] && bossStance == stances[1])
-        {
-            Heal();
-        }
-        else
-        {
-            DamageAssignment();
-        }
-
-        if(invisible && playerPose == poses[1])
-        {
-            invisibleCounter ++;
-            if(invisibleCounter >=3)
+             //calculates the winner
+            if(playerPose == bossPose)
             {
-                invisible = false;
-                animators[0].Play(anBody);
+                TurnUpdate();
+                return;
             }
-            animators[0].Play("BodyFlicker");
+            else if(playerPose == poses[1] && (bossPose == poses[2] || bossPose == poses[4]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[2] && (bossPose == poses[3] || bossPose == poses[5]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[3] && (bossPose == poses[1] || bossPose == poses[4]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[4] && (bossPose == poses[2] || bossPose == poses[5]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[5] && (bossPose == poses[1] || bossPose == poses[3]))
+            {
+                win = true;
+            }
+            else
+            {
+                win = false;
+            }
+
+            //damage multiplier(stances)
+            currentDMG = baseDMG;
+            
+            
+            if(playerStance == stances[1])
+            {
+                currentDMG = currentDMG/2;
+            }
+            else if(playerStance == stances[3])
+            {
+                currentDMG = currentDMG*2;
+            }
+
+            if(bossStance == stances[1])
+            {
+                currentDMG = currentDMG/2;
+            }
+            else if(bossStance == stances[3])
+            {
+                currentDMG = currentDMG*2;
+            }
+
+            if(playerStance == stances[1] && bossStance == stances[1])
+            {
+                Heal();
+            }
+            else
+            {
+                DamageAssignment();
+            }
+
+            if(invisible && playerPose == poses[1])
+            {
+                invisibleCounter ++;
+                if(invisibleCounter >=3)
+                {
+                    invisible = false;
+                    animators[0].Play(anBody);
+                }
+                animators[0].Play("BodyFlicker");
+            }
         }
+
+       
 
         //Updates the loser's health according to the previous calculations
         void DamageAssignment()
