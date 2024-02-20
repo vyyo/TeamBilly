@@ -6,11 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Billy/Scenes/Keyboard/Fantocci.unity
-    guid: 76ecf7de4f234c3498c47a0c414e0c4e
+    path: Assets/Billy/Scenes/VR/Fantocci 1.unity
+    guid: f5d4ded71c82f6848b93ff11bf67f2aa
   - enabled: 1
-    path: Assets/Billy/Scenes/Keyboard/Kissy.unity
-    guid: e625c9d459c5e734baed84e29ede9fbf
+    path: Assets/Billy/Scenes/VR/Kissy 1.unity
+    guid: cc7d0dd0dbd21d849b2fa0eb5a7388d4
+  - enabled: 1
+    path: Assets/Billy/Scenes/VR/Paul 1.unity
+    guid: 00cf93d54084a684ea9b92b12f3d1f72
+  - enabled: 1
+    path: Assets/Billy/Scenes/VR/Pieruzz 1.unity
+    guid: ff970a4cbd7189d43ba5a41517cfaf93
+  - enabled: 1
+    path: Assets/Billy/Scenes/VR/Silvio 1.unity
+    guid: 302f1e2a0cf8f864e8139498832cefac
+  - enabled: 1
+    path: Assets/Billy/Scenes/VR/Finale.unity
+    guid: 54e23dff7ec869849bafa6b7a4d629f9
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

@@ -156,7 +156,7 @@ public class VRBattleManager : MonoBehaviour
         }
         else if(playerHealth <= 0)
         {
-            StartCoroutine(NextScene(intervalloTurni, 0)); //add gameover scene index
+            StartCoroutine(NextScene(intervalloTurni, SceneManager.GetActiveScene().buildIndex)); //add gameover scene index
         }
         else
         {
