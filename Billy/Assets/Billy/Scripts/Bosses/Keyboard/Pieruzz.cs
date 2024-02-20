@@ -97,7 +97,7 @@ public class Pieruzz : MonoBehaviour
         }
         if(bossHealth <= 0)
         {
-            inkIndex = 0;
+            inkIndex = 9;
             //audio vittoria?
             return;
         }
@@ -109,8 +109,10 @@ public class Pieruzz : MonoBehaviour
         }
         if(battleManager.phaseSwitch)
         {
-            inkIndex = 9;
+            inkIndex = 8;
             battleManager.phaseSwitch = false;
+            musicSource.clip = songs[1];
+            musicSource.Play();
             return;
         }
 
