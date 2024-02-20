@@ -104,7 +104,6 @@ public class Pieruzz : MonoBehaviour
         if(currentPhase == 1 && bossHealth <= phaseSwitchHP)
         {
             currentPhase = 2;
-            battleManager.bossHealth = bossHealth + 18;
             battleManager.phaseSwitch = true;
             return;
         }
@@ -132,70 +131,137 @@ public class Pieruzz : MonoBehaviour
     {
         if(currentPhase == 1)
         {
-            inkIndex = 1;
-            stanceIndex = 0;
-            poseCombo.Add(poses[2]);
-            poseCombo.Add(poses[2]);
-            anPoseCombo.Add(anPoses[2]);
-            anPoseCombo.Add(anPoses[2]);
-            battleManager.ongoingCombo = true;
-            /*if(roll <= 0.3f)
+            if(roll <= 0.1f)
             {
                 inkIndex = 1;
                 stanceIndex = 0;
-                poseIndex = 1;
+                poseIndex = 2;
             }
-            else if(0.3f < roll && roll <= 0.45f)
+            else if(0.1f < roll && roll <= 0.2f)
             {
                 inkIndex = 2;
-                stanceIndex = 0;
+                stanceIndex = 1;
                 poseIndex = 3;
             }
-            else if(0.45f < roll && roll <= 0.6f)
+            else if(0.2f < roll && roll <= 0.3f)
             {
-                inkIndex = 3;
+                inkIndex = 2;
                 stanceIndex = 1;
                 poseIndex = 1;
             }
-            else if(0.6f < roll && roll <= 0.75f)
+            else if(0.3f < roll && roll <= 0.4f)
+            {
+                inkIndex = 2;
+                stanceIndex = 1;
+                poseIndex = 4;
+            }
+            else if(0.4f < roll && roll <= 0.5f)
+            {
+                inkIndex = 3;
+                stanceIndex = 0;
+                poseIndex = 2;
+            }
+            else if(0.5f < roll && roll <= 0.6f)
+            {
+                inkIndex = 3;
+                stanceIndex = 0;
+                poseIndex = 3;
+            }
+            else if(0.6f < roll && roll <= 0.7f)
+            {
+                inkIndex = 3;
+                stanceIndex = 0;
+                poseIndex = 0;
+            }
+            else if(0.7f < roll && roll <= 0.8f)
+            {
+                inkIndex = 4;
+                stanceIndex = 1;
+                poseIndex = 4;
+            }
+            else if(0.8f < roll && roll <= 0.9f)
             {
                 inkIndex = 4;
                 stanceIndex = 1;
                 poseIndex = 2;
             }
-            else if(0.75f < roll && roll <= 0.9f)
-            {
-                inkIndex = 5;
-                stanceIndex = 1;
-                poseIndex = 3;
-            }
-            else if(0.9f < roll && roll <= 0.93f)
-            {
-                inkIndex = 6;
-                stanceIndex = 2;
-                poseIndex = 1;
-            }
             else
             {
-                inkIndex = 7;
-                stanceIndex = 2;
-                poseIndex = 2;
+                inkIndex = 4;
+                stanceIndex = 1;
+                poseIndex = 0;
             }
         }
         else if(currentPhase == 2)
         {
-            if(roll <= 0.33f)
+            if(roll <= 0.1f)
             {
-                inkIndex = 7;
-                stanceIndex = 2;
+                inkIndex = 3;
+                stanceIndex = 0;
                 poseIndex = 2;
+            }
+            else if(0.1f < roll && roll <= 0.2f)
+            {
+                inkIndex = 3;
+                stanceIndex = 0;
+                poseIndex = 3;
+            }
+            else if(0.2f < roll && roll <= 0.3f)
+            {
+                inkIndex = 3;
+                stanceIndex = 0;
+                poseIndex = 0;
+            }
+            else if(0.3f < roll && roll <= 0.36f)
+            {
+                inkIndex = 5;
+                stanceIndex = 2;
+                poseCombo.Add(poses[0]);
+                poseCombo.Add(poses[0]);
+                anPoseCombo.Add(anPoses[0]);
+                anPoseCombo.Add(anPoses[0]);
+                battleManager.ongoingCombo = true;
+            }
+            else if(0.36f < roll && roll <= 0.42f)
+            {
+                inkIndex = 5;
+                stanceIndex = 2;
+                poseCombo.Add(poses[1]);
+                poseCombo.Add(poses[1]);
+                anPoseCombo.Add(anPoses[1]);
+                anPoseCombo.Add(anPoses[1]);
+                battleManager.ongoingCombo = true;
+            }
+            else if(0.42f < roll && roll <= 0.50f)
+            {
+                inkIndex = 5;
+                stanceIndex = 2;
+                poseCombo.Add(poses[4]);
+                poseCombo.Add(poses[4]);
+                anPoseCombo.Add(anPoses[4]);
+                anPoseCombo.Add(anPoses[4]);
+                battleManager.ongoingCombo = true;
+            }
+            else if(0.5f < roll && roll <= 0.7f)
+            {
+                inkIndex = 6;
+                stanceIndex = 2;
+                poseCombo.Add(poses[1]);
+                poseCombo.Add(poses[3]);
+                anPoseCombo.Add(anPoses[1]);
+                anPoseCombo.Add(anPoses[3]);
+                battleManager.ongoingCombo = true;
             }
             else
             {
-                inkIndex = 8;
-                stanceIndex = 2;
-                poseIndex = 3;
-            }*/
+                inkIndex = 7;
+                stanceIndex = 1;
+                poseCombo.Add(poses[2]);
+                poseCombo.Add(poses[4]);
+                anPoseCombo.Add(anPoses[2]);
+                anPoseCombo.Add(anPoses[4]);
+                battleManager.ongoingCombo = true;
+            }
         }
         //Debug.Log("Ink index: " + inkIndex + "Stance index: " + stanceIndex + "Pose index: " + poseIndex);
     }
