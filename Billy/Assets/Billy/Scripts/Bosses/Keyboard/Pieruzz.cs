@@ -30,7 +30,7 @@ public class Pieruzz : MonoBehaviour
     int poseIndex = 0;
     string[] anStances = new string[]{"StanceDifensivo", "StanceNeutrale", "StanceOffensivo"}; //will be replaced by scriptable object
     string[] anPoses = new string[]{"PoseSpock", "PosePace", "PoseMarcello", "PosePistola", "PoseBuchino"}; //will be replaced by scriptable object
-    string[] anBodies = new string[]{"BodyDifensivo", "BodyNeutrale", "BodyOffensivo"}; //will be replaced by scriptable object
+    string[] anBodies = new string[]{"BodyUno", "BodyDue"}; //will be replaced by scriptable object
     string anStance = "";
     string anPose = "";
     string anBody = "";
@@ -118,7 +118,15 @@ public class Pieruzz : MonoBehaviour
         PatternCalculation(roll, currentPhase);
         
         anStance = anStances[stanceIndex];
-        anBody = anBodies[stanceIndex];
+        if(currentPhase == 1)
+        {
+            anBody = anBodies[0];
+        }
+        else if(currentPhase == 2)
+        {
+            anBody = anBodies[1];
+        }
+        
         bossStance = stances[stanceIndex];
         if(!battleManager.ongoingCombo)
         {
