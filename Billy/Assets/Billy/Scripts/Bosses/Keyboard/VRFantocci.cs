@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class VRKissy : MonoBehaviour
+public class VRFantocci : MonoBehaviour
 {
     [SerializeField] VRBattleManager vrBattleManager; //only difference between vr and keyboard
     
@@ -15,11 +14,6 @@ public class VRKissy : MonoBehaviour
     //Boss Music
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioClip[] songs;
-
-    //Battle Variables
-    [SerializeField] int phaseSwitchHP;
-    int currentPhase = 1;
-    float roll = 0;
 
     //Boss output
     string bossStance = "";
@@ -94,97 +88,34 @@ public class VRKissy : MonoBehaviour
         }
         if(bossHealth <= 0)
         {
-            inkIndex = 0;
+            inkIndex = 4;
             //audio vittoria?
             return;
         }
-        if(currentPhase == 1 && bossHealth <= phaseSwitchHP)
-        {
-            currentPhase = 2;
-            vrBattleManager.bossHealth = bossHealth + 18;
-            vrBattleManager.phaseSwitch = true;
-            return;
-        }
-        if(vrBattleManager.phaseSwitch)
-        {
-            inkIndex = 9;
-            vrBattleManager.phaseSwitch = false;
-            return;
-        }
-
-        roll = Random.value;
-        PatternCalculation(roll, currentPhase);
         
+        stanceIndex = 1;
+        poseIndex = Random.Range(1, 4);
         anStance = anStances[stanceIndex];
         anPose = anPoses[poseIndex];
-        anBody = anBodies[stanceIndex];
+        anBody = anBodies[1];
         bossStance = stances[stanceIndex];
         bossPose = poses[poseIndex];
-    }
 
-    void PatternCalculation(float roll, int currentPhase)
-    {
-        if(currentPhase == 1)
+        switch(poseIndex)
         {
-            if(roll <= 0.3f)
-            {
-                inkIndex = 1;
-                stanceIndex = 0;
-                poseIndex = 1;
-            }
-            else if(0.3f < roll && roll <= 0.45f)
-            {
-                inkIndex = 2;
-                stanceIndex = 0;
-                poseIndex = 3;
-            }
-            else if(0.45f < roll && roll <= 0.6f)
-            {
-                inkIndex = 3;
-                stanceIndex = 1;
-                poseIndex = 1;
-            }
-            else if(0.6f < roll && roll <= 0.75f)
-            {
-                inkIndex = 4;
-                stanceIndex = 1;
-                poseIndex = 2;
-            }
-            else if(0.75f < roll && roll <= 0.9f)
-            {
-                inkIndex = 5;
-                stanceIndex = 1;
-                poseIndex = 3;
-            }
-            else if(0.9f < roll && roll <= 0.93f)
-            {
-                inkIndex = 6;
-                stanceIndex = 2;
-                poseIndex = 1;
-            }
-            else
-            {
-                inkIndex = 7;
-                stanceIndex = 2;
-                poseIndex = 2;
-            }
+            case 1:
+            inkIndex = 1;
+            break;
+            case 2:
+            inkIndex = 2;
+            break;
+            case 3:
+            inkIndex = 3;
+            break;
+            default:
+            inkIndex = 0;
+            break;
         }
-        else if(currentPhase == 2)
-        {
-            if(roll <= 0.33f)
-            {
-                inkIndex = 7;
-                stanceIndex = 2;
-                poseIndex = 2;
-            }
-            else
-            {
-                inkIndex = 8;
-                stanceIndex = 2;
-                poseIndex = 3;
-            }
-        }
-        Debug.Log("Ink index: " + inkIndex + "Stance index: " + stanceIndex + "Pose index: " + poseIndex);
     }
 
     void BossOutput()

@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class VRBattleManager : MonoBehaviour
 {
     //Player Controller
     [SerializeField] VRControls vrControls;
+    //Audio
+    [SerializeField] AudioSource damageSource;
+    [SerializeField] AudioClip[] damageSFX;
+    //Animators
+    [Header("Animators(Body, Pose, Stance)")]
+    [SerializeField] private Animator[] animators;
+    public string  anBody;
+    public string  anPose;
+    public string anStance;
 
     //Text
     [SerializeField] TextMeshProUGUI gameStateText;
@@ -24,6 +34,8 @@ public class VRBattleManager : MonoBehaviour
     public string oldBossStance= "";
     public string bossPose = "";
     public string oldbossPose = "";
+    public List<string> poseCombo = new List<string>();
+    public List<string> anPoseCombo = new List<string>();
 
     //Health
     [SerializeField] public int playerHealth = 30;
@@ -35,9 +47,20 @@ public class VRBattleManager : MonoBehaviour
     public int currentTurn = 0;
     [SerializeField] int turnLimit = 10; //number of turns after which the player starts taking damage
     public bool moveSent = true;
+    public bool firstMove = false;
+    public bool phaseSwitch = false;
+    public bool invisible = false;
+    public bool ongoingCombo = false;
+    int comboCounter = 0;
+    [SerializeField] public int invisibleCounter = 0;
+    [SerializeField] private float intervalloTurni = 3f;
+
+    //Scene Management
+    [SerializeField] int nextSceneIndex;
 
     void Awake()
     {
+        firstMove = true;
         TurnUpdate();
     }
 
@@ -63,6 +86,14 @@ public class VRBattleManager : MonoBehaviour
 
     void TurnUpdate()
     {
+        if(ongoingCombo)
+        {
+            Debug.Log("Player health: " + playerHealth);
+            Debug.Log("Boss health: " + bossHealth);
+            UIUpdate();
+            StartCoroutine(Wait(intervalloTurni));
+            return;
+        }
         if(currentTurn > turnLimit)
         {
             playerHealth = playerHealth - (currentTurn - turnLimit);
@@ -72,6 +103,21 @@ public class VRBattleManager : MonoBehaviour
         Debug.Log("Player health: " + playerHealth);
         Debug.Log("Boss health: " + bossHealth);
         UIUpdate();
+        if(firstMove)
+        {
+            InitiateTurn();
+            //firstMove = false;
+        }
+        else
+        {
+            StartCoroutine(Wait(intervalloTurni));
+        }
+        //InitiateTurn();
+    }
+
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
         InitiateTurn();
     }
 
@@ -91,92 +137,180 @@ public class VRBattleManager : MonoBehaviour
     void InitiateTurn()
     {
         Debug.Log("turno nuovooooooooooooooo");
-        vrControls.enabled = true;
-        moveSent = false;
+        if(firstMove || phaseSwitch)
+        {
+            vrControls.enabled = false;
+            moveSent = false;
+            StartCoroutine(Wait(intervalloTurni * 3));
+        }
+        else if(ongoingCombo)
+        {
+            vrControls.enabled = false;
+            DmgCalc(playerStance, playerPose);
+            //StartCoroutine(Wait(intervalloTurni * 2));
+        }
+        else if(bossHealth <= 0)
+        {
+            moveSent = false;
+            StartCoroutine(NextScene(intervalloTurni, nextSceneIndex));
+        }
+        else if(playerHealth <= 0)
+        {
+            StartCoroutine(NextScene(intervalloTurni, 0)); //add gameover scene index
+        }
+        else
+        {
+            Debug.Log("WTF");
+            vrControls.enabled = true;
+            moveSent = false;
+        }
+    }
+
+    IEnumerator NextScene(float time, int sceneIndex)
+    {
+        yield return new WaitForSeconds(time*2);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     public void DmgCalc(string currentStance, string currentPose)
     {
+        
+        animators[0].Play(anBody);
+        //animators[1].Play(anPose);
+        animators[2].Play(anStance);
+
         vrControls.enabled = false;
 
         bool win = false;
+        int currentDMG;
 
         //receiving player input
         playerStance = currentStance;
         playerPose = currentPose;
 
-        //calculates the winner
-        if(playerPose == bossPose)
+        if(ongoingCombo && comboCounter < poseCombo.Count)
         {
-            TurnUpdate();
+            Debug.Log("combo");
+            animators[1].Play(anPoseCombo[comboCounter]);
+            bossPose = poseCombo[comboCounter];
+            comboCounter ++;
+            Calc();
+        }
+        else if(ongoingCombo && comboCounter >= poseCombo.Count)
+        {
+            Debug.Log("SAAAAAAAAAAAAAAAAAAS");
+            poseCombo.Clear();
+            anPoseCombo.Clear();
+            comboCounter = 0;
+            ongoingCombo = false;
+            moveSent = false;
+            ClearInputs();
+            InitiateTurn();
             return;
         }
-        else if(playerPose == poses[1] && (bossPose == poses[2] || bossPose == poses[4]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[2] && (bossPose == poses[3] || bossPose == poses[5]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[3] && (bossPose == poses[1] || bossPose == poses[4]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[4] && (bossPose == poses[2] || bossPose == poses[5]))
-        {
-            win = true;
-        }
-        else if(playerPose == poses[5] && (bossPose == poses[1] || bossPose == poses[3]))
-        {
-            win = true;
-        }
         else
         {
-            win = false;
+            animators[1].Play(anPose);
+            Calc();
         }
 
-        //damage multiplier(stances)
-        int currentDMG = baseDMG;
-        
-        
-        if(playerStance == stances[1])
+        void Calc()
         {
-            currentDMG = currentDMG/2;
-        }
-        else if(playerStance == stances[3])
-        {
-            currentDMG = currentDMG*2;
+             //calculates the winner
+            if(playerPose == bossPose)
+            {
+                TurnUpdate();
+                return;
+            }
+            else if(playerPose == poses[1] && (bossPose == poses[2] || bossPose == poses[4]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[2] && (bossPose == poses[3] || bossPose == poses[5]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[3] && (bossPose == poses[1] || bossPose == poses[4]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[4] && (bossPose == poses[2] || bossPose == poses[5]))
+            {
+                win = true;
+            }
+            else if(playerPose == poses[5] && (bossPose == poses[1] || bossPose == poses[3]))
+            {
+                win = true;
+            }
+            else
+            {
+                win = false;
+            }
+
+            //damage multiplier(stances)
+            currentDMG = baseDMG;
+            
+            
+            if(playerStance == stances[1])
+            {
+                currentDMG = currentDMG/2;
+            }
+            else if(playerStance == stances[3])
+            {
+                currentDMG = currentDMG*2;
+            }
+
+            if(bossStance == stances[1])
+            {
+                currentDMG = currentDMG/2;
+            }
+            else if(bossStance == stances[3])
+            {
+                currentDMG = currentDMG*2;
+            }
+
+            if(playerStance == stances[1] && bossStance == stances[1])
+            {
+                Heal();
+            }
+            else
+            {
+                DamageAssignment();
+            }
+
+            if(invisible && playerPose == poses[1])
+            {
+                invisibleCounter ++;
+                if(invisibleCounter >=3)
+                {
+                    invisible = false;
+                    animators[0].Play(anBody);
+                }
+                animators[0].Play("BodyFlicker");
+            }
         }
 
-        if(bossStance == stances[1])
-        {
-            currentDMG = currentDMG/2;
-        }
-        else if(bossStance == stances[3])
-        {
-            currentDMG = currentDMG*2;
-        }
-
-        if(playerStance == stances[1] && bossStance == stances[1])
-        {
-            Heal();
-        }
-        else
-        {
-            DamageAssignment();
-        }
+       
 
         //Updates the loser's health according to the previous calculations
         void DamageAssignment()
         {
             if(win)
             {
-                bossHealth = bossHealth - currentDMG;
+                if(invisible && playerPose != poses[1])
+                {
+                    currentDMG = 0;
+                }
+                else
+                {
+                    bossHealth = bossHealth - currentDMG;
+                    damageSource.PlayOneShot(damageSFX[1]);
+                }
             }
             else
             {
                 playerHealth = playerHealth - currentDMG;
+                damageSource.PlayOneShot(damageSFX[0]);
             }
             healStreak = 0;
         }
