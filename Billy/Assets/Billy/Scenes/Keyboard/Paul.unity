@@ -2727,13 +2727,15 @@ MonoBehaviour:
   bossPose: 
   oldbossPose: 
   playerHealth: 30
-  bossHealth: 26
+  bossHealth: 30
   baseDMG: 2
   currentTurn: 0
   turnLimit: 10
   moveSent: 1
   firstMove: 0
   phaseSwitch: 0
+  invisible: 0
+  invisibleCounter: 0
   intervalloTurni: 3
   nextSceneIndex: 0
 --- !u!4 &1692741738
@@ -3135,7 +3137,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2047874435

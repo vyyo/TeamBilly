@@ -45,6 +45,8 @@ public class BattleManager : MonoBehaviour
     public bool moveSent = true;
     public bool firstMove = false;
     public bool phaseSwitch = false;
+    public bool invisible = false;
+    [SerializeField] int invisibleCounter = 0;
     [SerializeField] private float intervalloTurni = 3f;
 
     //Scene Management
@@ -151,7 +153,14 @@ public class BattleManager : MonoBehaviour
 
     public void DmgCalc(string currentStance, string currentPose)
     {
-        animators[0].Play(anBody);
+        if(invisible)
+        {
+            animators[0].Play("BodyHidden");
+        }
+        else
+        {
+            animators[0].Play(anBody);
+        }
         animators[1].Play(anPose);
         animators[2].Play(anStance);
 
@@ -225,11 +234,26 @@ public class BattleManager : MonoBehaviour
             DamageAssignment();
         }
 
+        if(invisible && playerPose == poses[1])
+        {
+            invisibleCounter ++;
+            if(invisibleCounter >=3)
+            {
+                invisible = false;
+                animators[0].Play(anBody);
+            }
+            animators[0].Play("BodyFlicker");
+        }
+
         //Updates the loser's health according to the previous calculations
         void DamageAssignment()
         {
             if(win)
             {
+                if(invisible && playerPose != poses[1])
+                {
+                    currentDMG = 0;
+                }
                 bossHealth = bossHealth - currentDMG;
             }
             else
