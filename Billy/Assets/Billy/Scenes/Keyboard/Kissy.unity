@@ -1716,15 +1716,22 @@ MonoBehaviour:
   - {fileID: 1830022031}
   - {fileID: 158015130}
   audioClips:
+  - {fileID: 8300000, guid: d6c091a8d7dd28143a87596eba00b9b7, type: 3}
   - {fileID: 8300000, guid: cd2b72410fd42384ca7504890e878c4c, type: 3}
   - {fileID: 8300000, guid: 1d6f38894b9d3cf439f61484d7984715, type: 3}
   - {fileID: 8300000, guid: b201505d5d8bfe246912ab9dde5f77b6, type: 3}
-  - {fileID: 8300000, guid: ae76809e07e18c644b99fbf447eb7343, type: 3}
-  - {fileID: 8300000, guid: a4c982546d958fc4bb70458fffac4ed6, type: 3}
-  - {fileID: 8300000, guid: 057623f89bdfb7b4cbead638eaeae8c7, type: 3}
   - {fileID: 8300000, guid: e7265e97c68ee224da3a692b050cec3d, type: 3}
   inkJSON:
+  - {fileID: 4900000, guid: be189bad88d2d9043b09dbd7e250e44c, type: 3}
   - {fileID: 4900000, guid: a597d4dec05b39b47b97bd15d34efe1d, type: 3}
+  - {fileID: 4900000, guid: bc8232fcf9c6d4c459311974d3d99916, type: 3}
+  - {fileID: 4900000, guid: 829da3b1d12811d42a9e000a5a8b5a4f, type: 3}
+  - {fileID: 4900000, guid: b2cfd6225c1c9dd4fb928c33f56bfe92, type: 3}
+  - {fileID: 4900000, guid: 35232a32f9ffa754b87d855ae746e73b, type: 3}
+  - {fileID: 4900000, guid: d38a4fd3df999e344a13b43c8e75370d, type: 3}
+  - {fileID: 4900000, guid: b80fcb1caed11f04b908fa825c7e3931, type: 3}
+  - {fileID: 4900000, guid: 3d03f44fb6ceef04db67b62618095742, type: 3}
+  - {fileID: 4900000, guid: 0d956822a0c263a45b92e0aa5d8bf09d, type: 3}
 --- !u!1 &1475605421
 GameObject:
   m_ObjectHideFlags: 0

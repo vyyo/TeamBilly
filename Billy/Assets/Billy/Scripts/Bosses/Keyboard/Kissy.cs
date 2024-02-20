@@ -19,6 +19,7 @@ public class Kissy : MonoBehaviour
     //Battle Variables
     [SerializeField] int phaseSwitchHP;
     int currentPhase = 1;
+    float roll = 0;
 
     //Boss output
     string bossStance = "";
@@ -97,7 +98,7 @@ public class Kissy : MonoBehaviour
             //audio vittoria?
             return;
         }
-        if(bossHealth <= phaseSwitchHP)
+        if(currentPhase == 1 && bossHealth <= phaseSwitchHP)
         {
             currentPhase = 2;
             battleManager.bossHealth = bossHealth + 18;
@@ -106,40 +107,90 @@ public class Kissy : MonoBehaviour
         }
         if(battleManager.phaseSwitch)
         {
-            inkIndex = 0;
+            inkIndex = 9;
             battleManager.phaseSwitch = false;
             return;
         }
+
+        roll = Random.value;
+        PatternCalculation(roll, currentPhase);
         
-        stanceIndex = 1;
-        poseIndex = Random.Range(1, 4);
         anStance = anStances[stanceIndex];
         anPose = anPoses[poseIndex];
-        anBody = anBodies[1];
+        anBody = anBodies[stanceIndex];
         bossStance = stances[stanceIndex];
         bossPose = poses[poseIndex];
+    }
 
-        switch(poseIndex)
+    void PatternCalculation(float roll, int currentPhase)
+    {
+        if(currentPhase == 1)
         {
-            case 1:
-            inkIndex = 1;
-            break;
-            case 2:
-            inkIndex = 2;
-            break;
-            case 3:
-            inkIndex = 3;
-            break;
-            default:
-            inkIndex = 0;
-            break;
+            if(roll <= 0.3f)
+            {
+                inkIndex = 1;
+                stanceIndex = 0;
+                poseIndex = 1;
+            }
+            else if(0.3f < roll && roll <= 0.45f)
+            {
+                inkIndex = 2;
+                stanceIndex = 0;
+                poseIndex = 3;
+            }
+            else if(0.45f < roll && roll <= 0.6f)
+            {
+                inkIndex = 3;
+                stanceIndex = 1;
+                poseIndex = 1;
+            }
+            else if(0.6f < roll && roll <= 0.75f)
+            {
+                inkIndex = 4;
+                stanceIndex = 1;
+                poseIndex = 2;
+            }
+            else if(0.75f < roll && roll <= 0.9f)
+            {
+                inkIndex = 5;
+                stanceIndex = 1;
+                poseIndex = 3;
+            }
+            else if(0.9f < roll && roll <= 0.93f)
+            {
+                inkIndex = 6;
+                stanceIndex = 2;
+                poseIndex = 1;
+            }
+            else
+            {
+                inkIndex = 7;
+                stanceIndex = 2;
+                poseIndex = 2;
+            }
         }
+        else if(currentPhase == 2)
+        {
+            if(roll <= 0.33f)
+            {
+                inkIndex = 7;
+                stanceIndex = 2;
+                poseIndex = 2;
+            }
+            else
+            {
+                inkIndex = 8;
+                stanceIndex = 2;
+                poseIndex = 3;
+            }
+        }
+        Debug.Log("Ink index: " + inkIndex + "Stance index: " + stanceIndex + "Pose index: " + poseIndex);
     }
 
     void BossOutput()
     {
         //hint
-        dialogueTrigger.PlayDialogue(0);
+        dialogueTrigger.PlayDialogue(inkIndex);
         // = "Non hai possibilità contro la mia" + bossStance + " " + bossPose + "!"
 
         //output

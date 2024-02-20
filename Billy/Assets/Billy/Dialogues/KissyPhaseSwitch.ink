@@ -3,9 +3,9 @@ INCLUDE Globals.ink
 ->main
 
 ===main===
-~playAudioClip(1)
+~playAudioClip(4)
 ~playAnimation(0, "BodyDifensivo")
 ~playAnimation(1, "PoseHidden")
-~playAnimation(2, "StanceDifensivo")
-Venga un po’ qui un autoambulanza. Tranquillo, non sono malata mentale!
+~playAnimation(2, "StanceOffensivo")
+Chiamate un po’ il 118, sotto il porticato di Teramo!!
 ->END
