@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|SPOCK
+  m_Name: PoseSpock
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -37,19 +37,19 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5481068999417140596}
-    m_Position: {x: 374.9571, y: 124.35623, z: 0}
+    m_Position: {x: 380, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9022337776922970785}
-    m_Position: {x: 467.91846, y: 235.25754, z: 0}
+    m_Position: {x: 380, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2560891400414437469}
-    m_Position: {x: 547.8326, y: 333.1116, z: 0}
+    m_Position: {x: 380, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7034932292355470642}
-    m_Position: {x: 692.98285, y: 411.39487, z: 0}
+    m_Position: {x: 380, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1452462442990680602}
-    m_Position: {x: 727.98285, y: 476.39487, z: 0}
+    m_Position: {x: 380, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -59,7 +59,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -5481068999417140596}
+  m_DefaultState: {fileID: -1452462442990680602}
 --- !u!1102 &-5481068999417140596
 AnimatorState:
   serializedVersion: 6
@@ -67,7 +67,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BUCHINO
+  m_Name: PoseBuchino
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -93,7 +93,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|PACE
+  m_Name: PosePace
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -167,7 +167,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|MARCELLO
+  m_Name: PoseMarcello
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
