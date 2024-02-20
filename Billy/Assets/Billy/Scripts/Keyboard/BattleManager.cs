@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
+    //Audio
+    [SerializeField] AudioSource damageSource;
+    [SerializeField] AudioClip[] damageSFX;
     //Animators
     [Header("Animators(Body, Pose, Stance)")]
     [SerializeField] private Animator[] animators;
@@ -247,11 +250,16 @@ public class BattleManager : MonoBehaviour
                 {
                     currentDMG = 0;
                 }
-                bossHealth = bossHealth - currentDMG;
+                else
+                {
+                    bossHealth = bossHealth - currentDMG;
+                    damageSource.PlayOneShot(damageSFX[1]);
+                }
             }
             else
             {
                 playerHealth = playerHealth - currentDMG;
+                damageSource.PlayOneShot(damageSFX[0]);
             }
             healStreak = 0;
         }
