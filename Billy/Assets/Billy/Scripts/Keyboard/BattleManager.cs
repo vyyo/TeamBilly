@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -42,8 +43,11 @@ public class BattleManager : MonoBehaviour
     public int currentTurn = 0;
     [SerializeField] int turnLimit = 10; //number of turns after which the player starts taking damage
     public bool moveSent = true;
-    bool firstMove = false;
+    public bool firstMove = false;
     [SerializeField] private float intervalloTurni = 3f;
+
+    //Scene Management
+    [SerializeField] int nextSceneIndex;
 
     void Awake()
     {
@@ -85,7 +89,7 @@ public class BattleManager : MonoBehaviour
         if(firstMove)
         {
             InitiateTurn();
-            firstMove = false;
+            //firstMove = false;
         }
         else
         {
@@ -116,8 +120,32 @@ public class BattleManager : MonoBehaviour
     void InitiateTurn()
     {
         Debug.Log("turno nuovooooooooooooooo");
-        playerKeyboard.enabled = true;
-        moveSent = false;
+        if(firstMove)
+        {
+            playerKeyboard.enabled = false;
+            moveSent = false;
+            StartCoroutine(Wait(intervalloTurni * 3));
+        }
+        else if(bossHealth <= 0)
+        {
+            moveSent = false;
+            StartCoroutine(NextScene(intervalloTurni, nextSceneIndex));
+        }
+        else if(playerHealth <= 0)
+        {
+            StartCoroutine(NextScene(intervalloTurni, 0)); //add gameover scene index
+        }
+        else
+        {
+            playerKeyboard.enabled = true;
+            moveSent = false;
+        }
+    }
+
+    IEnumerator NextScene(float time, int sceneIndex)
+    {
+        yield return new WaitForSeconds(time*2);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     public void DmgCalc(string currentStance, string currentPose)
