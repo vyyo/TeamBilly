@@ -3,8 +3,8 @@ INCLUDE Globals.ink
 ->main
 
 ===main===
-~playAudioClip(0)
+~playAudioClip(9)
 ~playAnimation(1, "PoseHidden")
 ~playAnimation(2, "StanceHidden")
-1, 2, 3, 4!
+Incredibile, mi hai sconfitto.Si u vìeru mma (mamma mia arts).Sulu tu po' sconfiggere u vìeru mali chi infesta chista terra.Teni chistu,na sacra reliquia du me pòpulu,n arancino
 ->END

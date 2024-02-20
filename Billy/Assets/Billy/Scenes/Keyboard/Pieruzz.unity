@@ -814,7 +814,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholdeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer
+  m_text: "Menghia, pensavi chi fussi gi\xE0 finita, picciuottu? Pi realt\xE0,nun
+    stavu anc\xF9ora usando u v\xECeru potere r'i mia antenati.E\u2019 u momentu
+    ri mostrare novamenti o munnu cu j\xE8 u re dell\u2019MMA.Espansione du dominio:arte
+    segreta di la caponateira"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1701,7 +1704,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1d64404ffdf9ac64b838ed7e9e395b47, type: 3}
   - {fileID: 8300000, guid: 90e9e314b847005409cd841799f59567, type: 3}
   - {fileID: 8300000, guid: 4637359d3ea452144aba93f3f008b2bf, type: 3}
-  - {fileID: 8300000, guid: 179e6e8fe640b1842a0305ce119e4226, type: 3}
+  - {fileID: 8300000, guid: 769cf898cbe6046459812387b781f5f8, type: 3}
   - {fileID: 8300000, guid: e2fa004cefff35046b6b79cc3263d0fa, type: 3}
   - {fileID: 8300000, guid: 884c0c0b28be8d54c90b7147fc833aec, type: 3}
   - {fileID: 8300000, guid: 575823163cf974f4bb34118be6e8aa3c, type: 3}
@@ -2166,17 +2169,17 @@ MonoBehaviour:
   poseCombo: []
   anPoseCombo: []
   playerHealth: 30
-  bossHealth: 50
+  bossHealth: 40
   baseDMG: 2
   currentTurn: 0
   turnLimit: 10
-  moveSent: 1
+  moveSent: 0
   firstMove: 0
   phaseSwitch: 0
   invisible: 0
   ongoingCombo: 0
   invisibleCounter: 0
-  intervalloTurni: 1
+  intervalloTurni: 5
   nextSceneIndex: 0
 --- !u!4 &1692741738
 Transform:

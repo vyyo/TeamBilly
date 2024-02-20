@@ -3,8 +3,8 @@ INCLUDE Globals.ink
 ->main
 
 ===main===
-~playAudioClip(0)
+~playAudioClip(3)
 ~playAnimation(1, "PoseHidden")
 ~playAnimation(2, "StanceHidden")
-1, 2, 3, 4!
+reggerai la potenza del “calcio della fucilazione interstellare”?
 ->END

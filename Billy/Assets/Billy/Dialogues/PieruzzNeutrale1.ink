@@ -3,8 +3,8 @@ INCLUDE Globals.ink
 ->main
 
 ===main===
-~playAudioClip(0)
+~playAudioClip(2)
 ~playAnimation(1, "PoseHidden")
 ~playAnimation(2, "StanceHidden")
-1, 2, 3, 4!
+A mossa da cui tuttu jè iniziato! "pugno du pentito fucilato e sotterratto"!
 ->END
