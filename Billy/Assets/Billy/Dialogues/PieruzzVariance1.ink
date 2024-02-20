@@ -3,8 +3,8 @@ INCLUDE Globals.ink
 ->main
 
 ===main===
-~playAudioClip(0)
+~playAudioClip(6)
 ~playAnimation(1, "PoseHidden")
 ~playAnimation(2, "StanceHidden")
-1, 2, 3, 4!
+A mossa preferita du maestro! "colpo cangiante du pentito fucilato e sotterratto"!
 ->END

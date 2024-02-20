@@ -3,8 +3,8 @@ INCLUDE Globals.ink
 ->main
 
 ===main===
-~playAudioClip(0)
+~playAudioClip(4)
 ~playAnimation(1, "PoseHidden")
 ~playAnimation(2, "StanceHidden")
-1, 2, 3, 4!
+Invoco u potere du me frate! “pugno spaziale marcelliano”!
 ->END

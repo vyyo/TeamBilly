@@ -147,28 +147,22 @@ public class Pieruzz : MonoBehaviour
                 stanceIndex = 0;
                 poseIndex = 2;
             }
-            else if(0.1f < roll && roll <= 0.2f)
+            else if(0.1f < roll && roll <= 0.25f)
             {
                 inkIndex = 2;
                 stanceIndex = 1;
                 poseIndex = 3;
             }
-            else if(0.2f < roll && roll <= 0.3f)
+            else if(0.25f < roll && roll <= 0.4f)
             {
                 inkIndex = 2;
                 stanceIndex = 1;
-                poseIndex = 1;
-            }
-            else if(0.3f < roll && roll <= 0.4f)
-            {
-                inkIndex = 2;
-                stanceIndex = 1;
-                poseIndex = 4;
-            }
+                poseIndex = 0;
+            }   
             else if(0.4f < roll && roll <= 0.5f)
             {
                 inkIndex = 3;
-                stanceIndex = 0;
+                stanceIndex = 2;
                 poseIndex = 2;
             }
             else if(0.5f < roll && roll <= 0.6f)
@@ -222,34 +216,14 @@ public class Pieruzz : MonoBehaviour
                 stanceIndex = 0;
                 poseIndex = 0;
             }
-            else if(0.3f < roll && roll <= 0.36f)
+            else if(0.3f < roll && roll <= 0.50f)
             {
                 inkIndex = 5;
                 stanceIndex = 2;
-                poseCombo.Add(poses[0]);
-                poseCombo.Add(poses[0]);
-                anPoseCombo.Add(anPoses[0]);
-                anPoseCombo.Add(anPoses[0]);
-                battleManager.ongoingCombo = true;
-            }
-            else if(0.36f < roll && roll <= 0.42f)
-            {
-                inkIndex = 5;
-                stanceIndex = 2;
+                poseCombo.Add(poses[2]);
                 poseCombo.Add(poses[1]);
-                poseCombo.Add(poses[1]);
+                anPoseCombo.Add(anPoses[2]);
                 anPoseCombo.Add(anPoses[1]);
-                anPoseCombo.Add(anPoses[1]);
-                battleManager.ongoingCombo = true;
-            }
-            else if(0.42f < roll && roll <= 0.50f)
-            {
-                inkIndex = 5;
-                stanceIndex = 2;
-                poseCombo.Add(poses[4]);
-                poseCombo.Add(poses[4]);
-                anPoseCombo.Add(anPoses[4]);
-                anPoseCombo.Add(anPoses[4]);
                 battleManager.ongoingCombo = true;
             }
             else if(0.5f < roll && roll <= 0.7f)
